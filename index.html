@@ -100,7 +100,7 @@
     document.addEventListener("DOMContentLoaded", () => {
       const userArea = document.getElementById("userArea");
       const user = localStorage.getItem("educplay_session_v2");
-      const puntos = localStorage.getItem("puntos") || 30; // ejemplo
+      const puntos = localStorage.getItem("puntos") || 0; // ejemplo
 
       if (user) {
         userArea.innerHTML = `
