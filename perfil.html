@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mi Progreso</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="centered">
+  <main class="card">
+    <header>
+      <h1>Mi Progreso</h1>
+      <p id="welcome" class="tagline"></p>
+    </header>
+
+    <section id="profile">
+      <div id="notLogged" class="feedback"></div>
+
+      <div id="profileContent" style="display:none">
+        <p>Puntos totales: <strong id="totalPoints">0</strong></p>
+
+        <h3>Detalle</h3>
+        <ul id="detail"></ul>
+
+        <div class="controls">
+          <button onclick="location.href='index.html'">Volver</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

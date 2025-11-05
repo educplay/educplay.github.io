@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Registro / Login</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="centered">
+  <main class="card">
+    <header><h1>Registro / Iniciar sesión</h1></header>
+
+    <section class="form">
+      <label>Usuario (nombre): <input id="username" /></label>
+      <label>Contraseña: <input id="password" type="password" /></label>
+      <div class="controls">
+        <button id="registerBtn">Registrarse</button>
+        <button id="loginBtn">Iniciar sesión</button>
+        <button onclick="location.href='index.html'">Volver</button>
+      </div>
+      <div id="msg" class="feedback" role="status"></div>
+    </section>
+  </main>
+<script src="script.js"></script>
+</body>
+</html>

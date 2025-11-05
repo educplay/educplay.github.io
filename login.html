@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Iniciar Sesión — Educplay</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .top-left {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+    }
+    .top-left button {
+      background: linear-gradient(90deg, var(--accent), #ff9fbf);
+      border: none;
+      color: white;
+      font-weight: bold;
+      border-radius: 8px;
+      padding: 8px 14px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: transform 0.2s;
+    }
+    .top-left button:hover {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body class="centered">
+  <!-- Botón volver arriba a la izquierda -->
+  <div class="top-left">
+    <button onclick="location.href='index.html'">⬅ Volver</button>
+  </div>
+
+  <main class="card">
+    <header>
+      <h1>Iniciar Sesión</h1>
+      <p class="tagline">Ingresa tus datos para continuar aprendiendo</p>
+    </header>
+
+    <section class="form">
+      <label>Usuario (nombre): <input id="username" /></label>
+      <label>Contraseña: <input id="password" type="password" /></label>
+
+      <div class="controls">
+        <button id="loginBtn">Iniciar sesión</button>
+      </div>
+
+      <p class="small">¿Aún no tienes cuenta? <a href="registro.html">Regístrate aquí</a></p>
+      <div id="msg" class="feedback" role="status"></div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+  <script>
+    // Lógica específica del login
+    document.addEventListener('DOMContentLoaded', () => {
+      const msg = document.getElementById('msg');
+      const loginBtn = document.getElementById('loginBtn');
+
+      loginBtn.addEventListener('click', () => {
+        const username = document.getElementById('username').value.trim();
+        const password = document.getElementById('password').value;
+
+        const users = JSON.parse(localStorage.getItem('educplay_users_v2') || '{}');
+
+        if (!users[username] || users[username].password !== password) {
+          msg.textContent = 'Usuario o contraseña incorrectos.';
+          msg.style.color = 'crimson';
+          return;
+        }
+
+        // Inicia sesión guardando el usuario activo
+        localStorage.setItem('educplay_session_v2', username);
+        msg.textContent = '¡Bienvenido, ' + username + '! Redirigiendo...';
+        msg.style.color = 'green';
+
+        setTimeout(() => {
+          window.location.href = 'perfil.html';
+        }, 800);
+      });
+    });
+  </script>
+</body>
+</html>

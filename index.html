@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Educplay — Inicio</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Barra superior */
+    .top-right {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      z-index: 10;
+      flex-wrap: wrap;
+    }
+    .top-right button {
+      background: linear-gradient(90deg, var(--accent), #ff9fbf);
+      border: none;
+      color: white;
+      font-weight: bold;
+      border-radius: 8px;
+      padding: 8px 14px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: transform 0.2s;
+    }
+    .top-right button:hover {
+      transform: scale(1.05);
+    }
+
+    /* Tarjeta del usuario */
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: white;
+      padding: 6px 12px;
+      border-radius: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      font-weight: bold;
+      color: var(--text);
+    }
+    .user-info span {
+      font-size: 15px;
+    }
+    .user-points {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 14px;
+      color: #f39c12;
+      background: #fff3c4;
+      padding: 4px 8px;
+      border-radius: 12px;
+      font-weight: bold;
+      box-shadow: inset 0 1px 0 rgba(0,0,0,0.1);
+    }
+    .user-points::before {
+      content: "⭐";
+    }
+  </style>
+</head>
+<body class="centered">
+
+  <!-- Zona superior derecha -->
+  <div class="top-right" id="userArea"></div>
+
+  <main class="card">
+    <header>
+      <h1>Educplay</h1>
+      <p class="tagline">Aprende jugando — versión beta</p>
+    </header>
+
+    <nav class="menu">
+      <button onclick="location.href='juegos.html'">Juegos</button>
+      <button onclick="location.href='libros.html'">Libros</button>
+      <button onclick="location.href='canciones.html'">Canciones</button>
+    </nav>
+
+    <section class="info">
+      <p>
+        Bienvenido a <strong>Educplay</strong>, una plataforma educativa interactiva 
+        para niños entre 5 y 10 años. 
+        Regístrate o inicia sesión para guardar tus puntos mientras aprendes jugando.
+      </p>
+    </section>
+
+    <footer>
+      <small>Proyecto educativo — versión beta</small>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+  <script>
+    // --- Control de sesión + puntos ---
+    document.addEventListener("DOMContentLoaded", () => {
+      const userArea = document.getElementById("userArea");
+      const user = localStorage.getItem("educplay_session_v2");
+      const puntos = localStorage.getItem("puntos") || 30; // ejemplo
+
+      if (user) {
+        userArea.innerHTML = `
+          <div class="user-info">
+            <button onclick="location.href='perfil.html'">👤 ${user}
+            <div class="user-points">${puntos}</div>
+          </div>
+          <button id="logoutBtn">Cerrar sesión</button>
+        `;
+        document.getElementById("logoutBtn").addEventListener("click", () => {
+          localStorage.removeItem("educplay_session_v2");
+          location.reload();
+        });
+      } else {
+        userArea.innerHTML = `
+          <button onclick="location.href='login.html'">Iniciar sesión</button>
+          <button onclick="location.href='registro.html'">Registrarse</button>
+        `;
+      }
+    });
+
+    
+
+  </script>
+
+
+
+</body>
+</html>
